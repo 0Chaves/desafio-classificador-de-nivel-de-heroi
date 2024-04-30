@@ -8,11 +8,19 @@ int main(int argc, char *argv[]) {
 	char* nome;
 	char* elo;
 	nome = (char*) malloc(30*sizeof(char));
-	int xp;
+	if(nome == NULL){
+		return 1;
+	}
+	int xp, i;
 	printf("Digite um nome para o heroi: ");
-	scanf("%s" ,nome);
+	fgets(nome, 31, stdin);
 	printf("Digite a quantidade de xp atual: ");
 	scanf("%d", &xp);
+	printf("O heroi entrou em batalha\n");
+	for(i = 0; i<5; i++){
+		printf("Um inimigo foi derrotado + 200xp\n");
+		xp+=200;
+	}
 	elo = classificador(xp);
 	printf("O Heroi de nome %s esta no nivel de %s", nome, elo);
 	return 0;
@@ -21,6 +29,9 @@ int main(int argc, char *argv[]) {
 char* classificador(int xp){
 	char* elo;
 	elo = (char*) malloc(15*sizeof(char));
+	if(elo == NULL){
+		return NULL;
+	}
 	if(xp<1000){
 		strcpy(elo, "Ferro");
 		return elo;
